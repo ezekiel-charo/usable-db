@@ -1,0 +1,21 @@
+{
+  "name": "usable-db",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "repl": "tsx src/repl/index.ts",
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "web": "tsx src/server/index.ts"
+  },
+  "keywords": [],
+  "author": "Ezekiel Charo",
+  "license": "MIT",
+  "description": "A toy RDBMS app",
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
