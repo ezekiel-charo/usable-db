@@ -60,6 +60,10 @@ export class Table {
   select(columnNames: string[], whereFn = (r: TableRow) => true): TableRow[] {
     const result: TableRow[] = [];
 
+    if (columnNames.length === 1 && columnNames[0] === "*") {
+      columnNames = Object.keys(this.schema.columns);
+    }
+
     this.rows.forEach((row) => {
       if (whereFn(row)) {
         const resultRow: TableRow = {};
