@@ -1,4 +1,4 @@
-import { TableRow, TableSchema, UpdateColumn } from "./types";
+import { TableRow, TableSchema, ColumnToUpdate } from "./types";
 
 export class Table {
   private rows: TableRow[] = [];
@@ -78,12 +78,12 @@ export class Table {
     return result;
   }
 
-  update(columns: UpdateColumn[], whereFn = (r: TableRow) => true): number {
+  update(columns: ColumnToUpdate[], whereFn = (r: TableRow) => true): number {
     // Validate columns
     columns.forEach((column) => {
-      if (!this.schema.columns[column.name]) {
+      if (!this.schema.columns[column.column]) {
         throw new Error(
-          `Column "${column.name}" does not exist in ${this.name}`
+          `Column "${column.column}" does not exist in ${this.name}`
         );
       }
     });
@@ -93,7 +93,7 @@ export class Table {
     this.rows.forEach((row) => {
       if (whereFn(row)) {
         columns.forEach((column) => {
-          row[column.name] = column.value;
+          row[column.column] = column.value;
         });
         rowsAffected++;
       }

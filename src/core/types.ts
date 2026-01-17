@@ -12,8 +12,8 @@ export interface TableSchema {
   primaryKey?: string;
 }
 
-export interface UpdateColumn {
-  name: string;
+export interface ColumnToUpdate {
+  column: string;
   value: any;
 }
 
