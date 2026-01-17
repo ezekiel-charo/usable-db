@@ -41,7 +41,7 @@ export class Table {
       valuesRow.forEach((value, i) => {
         const columnName = columnNames[i];
         if (!columnName) {
-          throw new Error("Column count doesn't match value count");
+          throw new Error("INSERT has more expressions than target columns");
         }
         row[columnName] = value;
       });
