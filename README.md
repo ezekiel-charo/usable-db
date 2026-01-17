@@ -138,6 +138,7 @@ Result
 - **Auto-increment** - Primary keys must be manually specified
 - **Indexing** - Indexing (B-tree or hash map) not yet supported
 - **Concurrent Access** - Single-threaded, no locking
+- **Authentication & Authorization** - There is no authentication or authorization 
 
 ## What I Learned
 
