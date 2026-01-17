@@ -4,7 +4,7 @@ export type WhereFn = (r: TableRow) => boolean;
 
 export interface TableColumn {
   name: string;
-  type: "INTEGER" | "TEXT" | "BOOLEAN";
+  dataType: "INTEGER" | "TEXT" | "BOOLEAN";
 }
 
 export interface TableSchema {
