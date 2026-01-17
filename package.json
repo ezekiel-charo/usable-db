@@ -4,10 +4,9 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "repl": "tsx src/repl/repl.ts",
     "build": "tsc",
     "start": "tsc && node dist/index.js",
-    "server": "tsx src/server/server.ts"
+    "server": "tsc && node dist/server/server.js"
   },
   "keywords": [],
   "author": "Ezekiel Charo",
