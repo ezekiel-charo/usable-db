@@ -1,5 +1,8 @@
+import { Database } from "./core/database";
 import { Table } from "./core/table";
 import { TableSchema, UpdateColumn } from "./core/types";
+
+const db = new Database("library");
 
 const tableSchema: TableSchema = {
   columns: {
@@ -10,7 +13,9 @@ const tableSchema: TableSchema = {
   primaryKey: "id",
 };
 
-const table = new Table("books", tableSchema);
+db.createTable("books", tableSchema);
+
+const table = db.getTable("books");
 
 table.insert(
   ["id", "title", "author"],
@@ -65,3 +70,11 @@ console.log("Select * \n", table.select(Object.keys(table.schema.columns)));
 console.log("Delete all rows: \n", table.delete(), "rows affected");
 
 console.log("Select * \n", table.select(Object.keys(table.schema.columns)));
+
+db.dropTable("books");
+
+try {
+  console.log(db.getTable("books"));
+} catch (e) {
+  console.log((e as Error).message);
+}
