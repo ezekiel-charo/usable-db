@@ -2,7 +2,7 @@ import { TableRow, TableSchema, ColumnToUpdate } from "./types";
 
 export class Table {
   private rows: TableRow[] = [];
-  //   private unique: Record<string, Record<string, string>> = {};
+  private unique: Record<string, Record<string, boolean>> = {};
 
   constructor(public readonly name: string, public schema: TableSchema) {}
 
@@ -34,6 +34,7 @@ export class Table {
     }
 
     const validRows: TableRow[] = [];
+    const tempUnique: Record<string, Record<string, boolean>> = {};
 
     values.forEach((valuesRow) => {
       const row: TableRow = {};
@@ -44,11 +45,30 @@ export class Table {
           throw new Error("INSERT has more expressions than target columns");
         }
         row[columnName] = value;
+
+        if (columnName === this.schema.primaryKey) {
+          // Ensure that Primary key is unique and NOT NULL
+          if (!value) {
+            throw new Error(`Primary key "${columnName}" cannot be null`);
+          }
+
+          if (
+            (this.unique[columnName] && this.unique[columnName][value]) ||
+            (tempUnique[columnName] && tempUnique[columnName][value])
+          ) {
+            throw new Error(`Duplicate value for Primary key "${columnName}"`);
+          }
+        }
+
+        const uniqueEntry: Record<string, boolean> = {};
+        uniqueEntry[value] = true;
+        tempUnique[columnName] = uniqueEntry;
       });
 
       validRows.push(row);
     });
 
+    this.unique = { ...this.unique, ...tempUnique };
     return validRows;
   }
 
