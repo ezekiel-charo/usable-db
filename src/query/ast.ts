@@ -1,4 +1,6 @@
-export type ASTNode =
+import { ColumnToUpdate } from "../core/types";
+
+export type AST =
   | CreateTableAST
   | InsertAST
   | SelectAST
@@ -33,7 +35,7 @@ export interface SelectAST {
 export interface UpdateAST {
   type: "UPDATE";
   tableName: string;
-  set: { column: string; value: any }[];
+  set: ColumnToUpdate[];
   where?: WhereClause;
 }
 
