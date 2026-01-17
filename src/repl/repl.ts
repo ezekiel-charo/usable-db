@@ -7,8 +7,6 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-console.log("Loading");
-
 export function repl() {
   rl.question("db> ").then((q) => {
     if (q == "exit") {
