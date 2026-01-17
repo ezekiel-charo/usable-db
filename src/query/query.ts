@@ -43,7 +43,7 @@ function generateWhereFn(whereClause?: WhereClause): WhereFn {
   };
 }
 
-export function executeQuery(sql: string): QueryResult | undefined {
+export function executeQuery(sql: string): QueryResult {
   let ast;
 
   try {
