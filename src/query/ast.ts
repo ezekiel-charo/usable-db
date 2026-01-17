@@ -27,7 +27,7 @@ export interface SelectAST {
   columns: string[]; // ['*'] or ['name', 'age']
   from: string;
   where?: WhereClause;
-  //   join?: JoinClause;
+  join?: JoinClause;
 }
 
 export interface UpdateAST {
@@ -49,11 +49,11 @@ export interface WhereClause {
   value: any;
 }
 
-// export interface JoinClause {
-//   type: "INNER";
-//   table: string;
-//   on: {
-//     leftColumn: string;
-//     rightColumn: string;
-//   };
-// }
+export interface JoinClause {
+  type: "INNER";
+  table: string;
+  on: {
+    leftColumn: string;
+    rightColumn: string;
+  };
+}
