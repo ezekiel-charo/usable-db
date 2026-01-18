@@ -4,6 +4,8 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.post("/api/query", (req, res) => {
   const result = executeQuery(req.body.sql);
   res.json(result);
