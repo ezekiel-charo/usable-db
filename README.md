@@ -1,4 +1,4 @@
-# Simple RDBMS - Pesapal Junior Dev Challenge '26
+# Simple RDBMS
 
 A relational database management system built from scratch in TypeScript, featuring SQL parsing, query execution, primary key constraint, and CRUD operations.
 
